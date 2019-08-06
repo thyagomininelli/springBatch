@@ -1,0 +1,63 @@
+#Server
+server:
+  port: 8080
+  contextPath: /itau-extrato-carga
+
+#detectar automaticamente diferentes dialetos
+  jpa:
+    database: default
+
+
+#spring:
+#  profiles:
+#    active: develop
+
+
+######################################################################################################DEVELOP
+---
+spring:
+  profiles: develop
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/batch_carga_extrato
+    username: postgres
+    password: 123
+
+######################################################################################################HOMOLOG
+---
+spring:
+  profiles: homolog
+  
+
+######################################################################################################PROD
+---
+spring:
+  profiles: prod
+  
+######################################################################################################LOGGING  
+---
+spring:
+  profiles: logging
+
+logging:
+ level:
+     org:
+       hibernate:
+               SQL: DEBUG
+               type:
+                 descriptor:
+                         sql:
+                           BasicBinder: TRACE
+
+
+######################################################################################################LOGJPA                           
+---
+spring:
+ profiles: logjpa
+ jpa:
+    properties:
+      hibernate:
+        showSql: true
+        useSqlComments: true
+        formatSql: true
+        type: trace 
